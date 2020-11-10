@@ -1,0 +1,30 @@
+.encabezado{
+  box-shadow: 2px 2px 2px 1px rgba(255, 0, 0, 1);
+}
+
+.eliminar:hover{
+  background-color: red;
+  color: white;
+}
+
+table{
+    table-layout: fixed;
+}
+
+td{
+    word-wrap:break-word;
+}
+
+.smart-scroll{
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 0;
+  z-index: 1030;
+}
+.scrolled-down{
+   transform:translateY(-100%); transition: all 0.3s ease-in-out;
+}
+.scrolled-up{
+   transform:translateY(0); transition: all 0.3s ease-in-out;
+}
