@@ -10,7 +10,7 @@
 
 	<div class="container-fluid mt-5" style="padding-top: 30px;">
 		<div class="row">
-			<div class="col">
+			<div class="col-6">
 
 
 				<div class="card border-success mb-3">
@@ -20,27 +20,31 @@
 
 
 							<table
-								class="table table-bordered table-responsive table-striped text-nowrap">
+								class="table table-bordered table-responsive table-striped  "
+								style="text-align: center;">
 								<thead>
 									<tr>
 										<th>ID venta</th>
 										<th>Fecha de venta</th>
-										<th>Producto</th>
-										<th>Cantidad</th>
 										<th>Total</th>
-										<th>No. Lote</th>
+										<th>Descripción Rapida</th>
+										<th>Editar Venta</th>
+										<th>Eliminar Venta</th>
 									</tr>
 								</thead>
 								<tbody>
 									<tr th:each="venta : ${ventas}">
 										<td th:text="${venta.id}"></td>
 										<td th:text="${venta.fecha}"></td>
-										<td th:text="${venta.producto.nombre}"></td>
-										<td th:text="${cantidad}"></td>
-										<td th:text="${total}"></td>
-										<td th:text="${lote}"></td>
+										<td th:text="${venta.total}"></td>
 
-
+										<td><button class="btn btn-info" th:text="'Informacion'"
+												type="button" th:href="@{/show-info/} + ${venta.id}"
+												id="informacion"></button></td>
+										<td><button class="btn btn-success" th:text="'Editar'"
+												type="button"></button></td>
+										<td><button class="btn btn-danger" th:text="'Eliminar'"
+												type="button"></button></td>
 
 
 									</tr>
@@ -51,27 +55,26 @@
 				</div>
 			</div>
 
-			<div class="col">
-				<form>
+			<div class="col-6">
+				<form  th:action="@{/form}" th:object="${venta}" method="post">
 					<div class="form-row">
 						<div class="col-md-6 mb-2">
 							<label for="producto">Producto</label> <input type="text"
 								class="form-control" id="producto" name="producto"
-								placeholder="Nombre del Producto" required>
+								placeholder="Nombre del Producto" onfocus="this.value=''">
 						</div>
+
 					</div>
-					<div class="form-row">
-						<div class="col-md-6 mb-2">
-							<label for="cantidad">Cantidad</label> <input type="number"
-								class="form-control" id="cantidad" required min="1">
-						</div>
-					</div>
+
+
+
 
 					<div class="form-row">
 						<div class="col-md-6 mb-2">
 							<div class="input-group mb-3">
 								<div class="input-group-prepend">
-									<label class="input-group-text" for="inputGroupSelect01">Lotes Disponibles</label>
+									<label class="input-group-text" for="inputGroupSelect01">Lotes
+										Disponibles</label>
 								</div>
 								<select class="custom-select" id="Lotes">
 									<option selected>Selecionar...</option>
@@ -79,12 +82,48 @@
 								</select>
 							</div>
 						</div>
+						<div class="col-md-3 mb-2">
+							<h1
+								style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%; text-align: right;"
+								id="total">0</h1>
+						</div>
+						<div class="col-md-3  mb-2">
+							<h1
+								style="position: absolute; top: 50%; left: 60%; transform: translate(-50%, -50%); width: 100%;">
+								MXN</h1>
+						</div>
 					</div>
 
+					<table th:replace="items_venta :: itemsVenta"></table>
+
+					<div class="form-row">
+						<div class="col-md-12">
+							<table
+								class="table table-responsive table-sm table-hover  text-nowrap"
+								id="cargarItemsVentas" style="text-align: center;">
+								<thead>
+									<tr>
+										<th width="30%">Nombre</th>
+										<th width="15%">Precio</th>
+										<th width="10%">Cantidad</th>
+										<th width="10%">Descuento</th>
+										<th width="10%">Subtotal</th>
+										<th width="10%">Eliminar</th>
+									</tr>
+								</thead>
+								<tbody>
+
+								</tbody>
+							</table>
+						</div>
+					</div>
 					<div class="form-row">
 						<div class="col-md-6 mb-2 mt-4">
-							<button type="submit" class="btn btn-success">Registrar</button>
+							<button type="submit" class="btn btn-success">Registrar
+								Venta</button>
 						</div>
+						<div class="col-md-2  mt-4"></div>
+
 					</div>
 				</form>
 			</div>
@@ -98,6 +137,28 @@
 	<script type="text/javascript">
 		$(document).ready(function() {
 
+			$("#informacion").click(function() {
+				$.ajax({
+					type: "GET",
+					url : $(this).attr("href"),
+
+					dataType : "json",
+					success : function(data) {
+
+						//now you can access properties using dot notation
+						if (data.length > 0) {
+
+							var r = data.map(function(e) {
+								return e.producto.nombre;
+							}).join("\n");
+							alert(r);
+
+						}
+
+					},
+				});
+
+			});
 		});
 	</script>
 

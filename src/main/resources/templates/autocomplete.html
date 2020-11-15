@@ -29,7 +29,9 @@
 					})
 				},
 				select : function(event, ui) {
-					$("#producto").val(ui.item.label);
+					var lote= null;
+					$("#Lotes").find("option").remove();
+					$("#producto").val("");
 					$.ajax({
 					    type: "GET",
 					    url: "/cargar-lotes/" + ui.item.value,
@@ -39,6 +41,8 @@
 					    dataType: "json",
 						success :  function(data) {
 					        jQuery.each(data, function(index, item) {
+					        	
+					        	lote = item.noLote;
 					            //now you can access properties using dot notation
 					       	 $('#Lotes').append('<option value="' + item.noLote + '">' +
 				        			 item.noLote + '</option>');
@@ -47,6 +51,17 @@
 					        });
 					    },
 					});
+					
+					var linea = $("#plantillaItemsVenta").html();
+					
+					linea = linea.replace(/{ID}/g,ui.item.value);
+					linea = linea.replace(/{NOMBRE}/g,ui.item.label);
+					linea = linea.replace(/{PRECIO}/g,ui.item.precio.toFixed(2));
+					linea = linea.replace(/{LOTE}/g,lote);
+					
+					$("#cargarItemsVentas tbody").append(linea);
+					itemsHelper.calcularImporte(ui.item.value,ui.item.precio, 1);
+					
 
 					return false;
 				}
@@ -54,8 +69,36 @@
 
 			});
 			
+			$("form").submit(function(){
+				
+				$("#plantillaItemsVenta").remove();
+				return;
+			});
+		
 			
 		});
+		
+		var itemsHelper = {
+				
+				calcularImporte : function(id, precio, cantidad){
+					$("#total_importe_" +id).html(parseFloat(precio)*parseFloat(cantidad));
+					this.calcularTotal();
+				},
+		       eliminarItem : function(id){
+		    	   $("#row_"+id).remove();
+		    	   this.calcularTotal();
+		       },
+		       calcularTotal: function(){
+		    	   var total = 0 ;
+		    	   $('span[id^="total_importe_"]').each(function(){
+		    		   
+		    		   total +=parseFloat($(this).html());
+		    	   });
+		    	   
+		    	   $("#total").html(total.toFixed(2));
+		       }
+				
+		}
 	</script>
 </body>
 </html>

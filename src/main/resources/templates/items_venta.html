@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div style="text-align: center;">
+		<table th:fragment="itemsVenta" class="d-none ">
+
+			<tbody id="plantillaItemsVenta">
+
+				<tr id="row_{ID}">
+					<td class="d-none"><input type="hidden" value="{ID}"
+						name="item_id[]" /></td>
+					<td>{NOMBRE}</td>
+					<td>{PRECIO} <span>MXN</span></td>
+					<td><input type="number" name="cantidad[]" value="1"
+						id="cantidad_{ID}"
+						style="width: 70%; box-sizing: border-box; padding: .375rem;"
+						class="form-control"
+						onchange="itemsHelper.calcularImporte('{ID}',{PRECIO},this.value);" 
+						onkeydown="return event.key != 'Enter';"/></td>
+					<td><input type="number" name="descuento[]" value="0"
+						id="descuento_{ID}"
+						style="width: 70%; box-sizing: border-box; padding: .375rem; display: inline-block;"
+						class="form-control"
+						onkeydown="return event.key != 'Enter';" > <span>%</span></td>
+					<td><span id="total_importe_{ID}">0</span> <span>MXN</span> </td>
+					<td><a type="button" href="#" th:text="Eliminar" onclick="itemsHelper.eliminarItem('{ID}');"
+						class="btn btn-danger btn-sm">x</a></td>
+				</tr>
+			</tbody>
+
+		</table>
+	</div>
+
+</body>
+</html>

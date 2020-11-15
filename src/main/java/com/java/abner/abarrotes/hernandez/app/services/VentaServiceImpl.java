@@ -25,24 +25,29 @@ public class VentaServiceImpl implements IVentaService {
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Page<Venta> findAll(Pageable pageable) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public void save(Venta venta) {
-		// TODO Auto-generated method stub
+		
+		ventaDao.save(venta);
 		
 	}
 
 	@Override
+	@Transactional(readOnly = true)
 	public Venta findOne(Long id) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
+	@Transactional
 	public void delete(Long id) {
 		// TODO Auto-generated method stub
 		

@@ -1,0 +1,12 @@
+INSERT INTO `productos` VALUES ('A01',0, 'Aceite Nutriolli 1L', 28.50);
+INSERT INTO `productos` VALUES ('C01',0, 'Coca-Cola 600 ml', 14.00);
+INSERT INTO `productos` VALUES ('C02',0, 'Canelitas', 10.50);
+INSERT INTO `productos` VALUES ('C03',0, 'Chips', 11.00);
+INSERT INTO `productos` VALUES ('C04',0, 'Coca-Cola 500 ml', 12.50);
+INSERT INTO `productos` VALUES ('C05',0, 'Cola-Cola 350 ml', 10.00);
+INSERT INTO `productos` VALUES ('C06',0, 'Chocoretas', 14.50);
+INSERT INTO `productos` VALUES ('D01',0, 'Donitas Bimbo 4 pzs.', 15.50);
+INSERT INTO `productos` VALUES ('JG1',0, 'Jamon X 100gr.', 5.50);
+INSERT INTO `productos` VALUES ('P01',0, 'Palomitas ACTII', 12.50);
+INSERT INTO `productos` VALUES ('Q01',0, 'Queso Panela 10g', 2.50);
+INSERT INTO `productos` VALUES ('V01',0, 'Valentina 350 ml', 9.50);

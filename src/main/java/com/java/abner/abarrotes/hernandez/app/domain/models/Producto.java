@@ -13,7 +13,7 @@ public class Producto implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 8951023891890029875L;
+	private static final long serialVersionUID = 1L;
 
 	@Id
 	@Column(nullable = false)
@@ -22,6 +22,7 @@ public class Producto implements Serializable {
 	
 	private String nombre;
 
+	@Column(columnDefinition = "Decimal(10,2)")
 	private Float precio;
 	
 	private int cantidad;
