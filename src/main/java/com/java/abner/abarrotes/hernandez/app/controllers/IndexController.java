@@ -39,6 +39,13 @@ public class IndexController {
 		return "index";
 
 	}
+	
+	@RequestMapping("/gestion/add")
+	public String pageEliminar(Model model ) {
+		
+		
+		return "/gestion/add";
+	}
 
 	@RequestMapping(value = "/cargar-productos/{term}", produces = { "application/json" })
 	public @ResponseBody List<Producto> cargarProductos(@RequestParam String term) {
@@ -69,8 +76,9 @@ public class IndexController {
 			itemVenta.setCantidad(cantidad[i]);
 			itemVenta.setProducto(producto);
 			itemVenta.setTotal(producto.getPrecio() * cantidad[i]);
-			
 			venta.addItemVenta(itemVenta);
+			
+			productoService.reducirMercancia(itemId[i], cantidad[i]);
 				
 		}
 		

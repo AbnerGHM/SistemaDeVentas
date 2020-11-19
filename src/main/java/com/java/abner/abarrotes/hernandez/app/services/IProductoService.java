@@ -22,4 +22,6 @@ public interface IProductoService {
 	
 	public List<Producto> findByNombre(String term);
 	
+	public void reducirMercancia(String id, Integer cantidad);
+	
 }

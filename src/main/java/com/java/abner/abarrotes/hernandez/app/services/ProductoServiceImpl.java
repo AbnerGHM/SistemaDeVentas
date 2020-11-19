@@ -56,6 +56,14 @@ public class ProductoServiceImpl  implements IProductoService{
 		// TODO Auto-generated method stub
 		return productoDao.findByNombre(term);
 	}
+
+	@Override
+	public void reducirMercancia(String id, Integer cantidad) {
+		Producto producto = productoDao.findById(id).get();
+		producto.setCantidad(producto.getCantidad()-cantidad);
+		
+		
+	}
 	
 	
 

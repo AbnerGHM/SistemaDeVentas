@@ -17,11 +17,11 @@
 						class="form-control"
 						onchange="itemsHelper.calcularImporte('{ID}',{PRECIO},this.value);" 
 						onkeydown="return event.key != 'Enter';"/></td>
-					<td><input type="number" name="descuento[]" value="0"
+				<!--  	<td><input type="number" name="descuento[]" value="0"
 						id="descuento_{ID}"
 						style="width: 70%; box-sizing: border-box; padding: .375rem; display: inline-block;"
 						class="form-control"
-						onkeydown="return event.key != 'Enter';" > <span>%</span></td>
+						onkeydown="return event.key != 'Enter';" > <span>%</span></td> -->
 					<td><span id="total_importe_{ID}">0</span> <span>MXN</span> </td>
 					<td><a type="button" href="#" th:text="Eliminar" onclick="itemsHelper.eliminarItem('{ID}');"
 						class="btn btn-danger btn-sm">x</a></td>

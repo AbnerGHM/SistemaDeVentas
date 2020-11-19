@@ -108,7 +108,7 @@
 										<th width="30%">Nombre</th>
 										<th width="15%">Precio</th>
 										<th width="10%">Cantidad</th>
-										<th width="10%">Descuento</th>
+									<!-- 	<th width="10%">Descuento</th> -->
 										<th width="10%">Subtotal</th>
 										<th width="10%">Eliminar</th>
 									</tr>
@@ -121,7 +121,7 @@
 					</div>
 					<div class="form-row">
 						<div class="col-md-6 mb-2 mt-4">
-							<button type="submit" class="btn btn-success" id="registrar"  disabled="true">Registrar
+							<button type="submit" class="btn btn-success" id="registrar" disabled="disabled">Registrar
 								Venta</button>
 						</div>
 						<div class="col-md-2  mt-4"></div>
@@ -137,17 +137,6 @@
 	<script th:replace="layout/layout :: javascript"></script>
 	<script th:replace="autocomplete :: autocomplete"></script>
 	<script type="text/javascript">
-	
-	$(document).ready(function(){
-		
-
-			 
-			
-			 
-			
-		
-	
-	});
 	
 
 	function getVentas(id){	
@@ -175,23 +164,6 @@
 	
 		}
 
-
-			
-			/*
-			var ventasHelper = {
-					
-					getProductos: function(id){
-						$("#informacion_" +id).
-					}
-					
-			}
-			var linea = $("#plantillaVenta").html();
-			
-			linea = linea.replace(/{ID}/g,ui.item.value);
-			linea = linea.replace(/{NOMBRE}/g,ui.item.label);
-			linea = linea.replace(/{PRECIO}/g,ui.item.precio.toFixed(2));
-			linea = linea.replace(/{LOTE}/g,lote);
-			*/
 	
 	</script>
 
