@@ -11,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.java.abner.abarrotes.hernandez.app.dao.IItemVenta;
 import com.java.abner.abarrotes.hernandez.app.dao.ILoteDao;
 import com.java.abner.abarrotes.hernandez.app.domain.models.ItemVenta;
@@ -37,7 +36,6 @@ public class IndexController {
 	@RequestMapping({ "", "/", "index" })
 	public String index(Model model) {
 		model.addAttribute("ventas", ventaService.findAll());
-		model.addAttribute("lotes", loteDao.findByNoLoteLikeCodigo("A01"));
 		return "index";
 
 	}
@@ -58,13 +56,13 @@ public class IndexController {
 	public @ResponseBody List<ItemVenta> mostrarInfo(@PathVariable(value = "id") Long id) {
 
 		return itemsVenta.findItemsByIdVenta(id);
-
+		
 	}
 
 	@PostMapping("/form")
    public String guardarVenta(Venta venta, @RequestParam(name="cantidad[]") Integer[] cantidad, @RequestParam(name="item_id[]") String[] itemId 
 		   ) {
-	   
+		
 		for (int i = 0; i <itemId.length ; i++) {
 			Producto producto  = productoService.findOne(itemId[i]);
 			ItemVenta itemVenta = new ItemVenta();
@@ -75,11 +73,21 @@ public class IndexController {
 			venta.addItemVenta(itemVenta);
 				
 		}
+		
+	
 		venta.setTotal(venta.getItemVenta().stream().map(ItemVenta::getTotal).reduce((float) 0, (subtotal, element) -> subtotal + element));
 		
 	ventaService.save(venta);
 	   
-	   
-	   return "index";
+		
+	   return "redirect:index";
    }
+	
+	@RequestMapping(value="/eliminar/{id}")
+	public String eliminarVenta(@PathVariable(value = "id") Long id ) {
+		
+		ventaService.delete(id);
+		return "redirect:/index";
+		
+	}
  }

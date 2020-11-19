@@ -19,6 +19,8 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -39,8 +41,10 @@ public class Venta implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
+
+	@JsonManagedReference
 	@JoinColumn(name = "venta_id")
-	@OneToMany(cascade = CascadeType.ALL , fetch = FetchType.LAZY)
+	@OneToMany( cascade = CascadeType.ALL , fetch = FetchType.LAZY)
 	private List<ItemVenta> itemVenta;
 
 	@PrePersist

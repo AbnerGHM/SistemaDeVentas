@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.java.abner.abarrotes.hernandez.app.dao.IVentaDao;
+import com.java.abner.abarrotes.hernandez.app.domain.models.ItemVenta;
 import com.java.abner.abarrotes.hernandez.app.domain.models.Venta;
 
 @Service
@@ -49,8 +50,15 @@ public class VentaServiceImpl implements IVentaService {
 	@Override
 	@Transactional
 	public void delete(Long id) {
-		// TODO Auto-generated method stub
+		
+		ventaDao.deleteById(id);
 		
 	}
+
+//	@Override
+//	public List<ItemVenta> itemsVenta(Long id) {
+//		// TODO Auto-generated method stub
+//		return ;
+//	}
 
 }

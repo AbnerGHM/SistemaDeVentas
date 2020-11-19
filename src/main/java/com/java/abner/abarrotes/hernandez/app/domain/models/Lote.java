@@ -22,9 +22,22 @@ public class Lote implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 	
 	
+
+	public Lote() {
+		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Lote(String noLote, Date fechadeCaducidad, Producto producto) {
+		
+		this.noLote = noLote;
+		this.fechadeCaducidad = fechadeCaducidad;
+		this.producto = producto;
+	}
 
 	@Id
 	@Column(name = "no_lote")
@@ -33,6 +46,7 @@ public class Lote implements Serializable {
 	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_de_caducidad")
 	private Date  fechadeCaducidad;
+	
 	
 	@ManyToOne(fetch = FetchType.LAZY )
 	private Producto producto;
@@ -60,6 +74,10 @@ public class Lote implements Serializable {
 
 	public void setProducto(Producto producto) {
 		this.producto = producto;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 

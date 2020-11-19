@@ -14,11 +14,16 @@ import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "items_ventas")
-public class ItemVenta {
+public class ItemVenta implements Serializable {
+
+	/**
+	 * 
+	 */
+	
+	private static final long serialVersionUID = 1L;
 
 	/**
 	 * 
@@ -28,14 +33,19 @@ public class ItemVenta {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
+	public ItemVenta() {
+		
+		// TODO Auto-generated constructor stub
+	}
+
 	@ManyToOne
 	private Producto producto;
 
 	@ManyToOne
 	private Lote lote;
 	
-	@JsonIgnore
-	@ManyToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
+	@JsonBackReference
+	@ManyToOne(fetch = FetchType.LAZY)
 	private Venta venta;
 
 	private int cantidad;
@@ -100,6 +110,10 @@ public class ItemVenta {
 
 	public void setVenta(Venta venta) {
 		this.venta = venta;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
 	}
 
 }

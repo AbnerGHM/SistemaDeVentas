@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 @Entity
 @Table(name = "productos")
 public class Producto implements Serializable {
@@ -13,6 +15,7 @@ public class Producto implements Serializable {
 	/**
 	 * 
 	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -25,12 +28,12 @@ public class Producto implements Serializable {
 	@Column(columnDefinition = "Decimal(10,2)")
 	private Float precio;
 	
-	private int cantidad;
+	private Integer cantidad;
 
 	public Producto() {
 	}
 
-	public Producto(String codigo, String nombre, Float precio , int cantidad) {
+	public Producto(String codigo, String nombre, Float precio , Integer cantidad) {
 
 		this.codigo = codigo;
 		this.nombre = nombre;
@@ -66,11 +69,11 @@ public class Producto implements Serializable {
 		return serialVersionUID;
 	}
 
-	public int getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 

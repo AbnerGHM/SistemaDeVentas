@@ -52,16 +52,24 @@
 					    },
 					});
 					
+					
 					var linea = $("#plantillaItemsVenta").html();
 					
 					linea = linea.replace(/{ID}/g,ui.item.value);
 					linea = linea.replace(/{NOMBRE}/g,ui.item.label);
 					linea = linea.replace(/{PRECIO}/g,ui.item.precio.toFixed(2));
 					linea = linea.replace(/{LOTE}/g,lote);
+					var myEle = document.getElementById("row_" + ui.item.value);
+				    if(myEle == null){
+				    	$("#cargarItemsVentas tbody").append(linea);
+				    	itemsHelper.calcularImporte(ui.item.value,ui.item.precio, 1);
+				    }
+
 					
-					$("#cargarItemsVentas tbody").append(linea);
-					itemsHelper.calcularImporte(ui.item.value,ui.item.precio, 1);
-					
+					if($("tr[id^='row_']").length>1){
+						
+						$("#registrar").attr("disabled",false);
+				     }
 
 					return false;
 				}
@@ -87,6 +95,11 @@
 		       eliminarItem : function(id){
 		    	   $("#row_"+id).remove();
 		    	   this.calcularTotal();
+		   		if($("tr[id^='row_']").length==1){
+					
+					$("#registrar").attr("disabled",true);
+			     }
+
 		       },
 		       calcularTotal: function(){
 		    	   var total = 0 ;
@@ -99,6 +112,17 @@
 		       }
 				
 		}
+		
+		function showRegistrar(){
+			
+			jQuery("#registrar").toggle("show");
+		}
+        function hideRegistrar(){
+			
+			jQuery("#registrar").toggle("hide");
+		}
+		
+		
 	</script>
 </body>
 </html>

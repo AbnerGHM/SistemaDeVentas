@@ -10,7 +10,7 @@
 
 	<div class="container-fluid mt-5" style="padding-top: 30px;">
 		<div class="row">
-			<div class="col-6">
+			<div class="col-5" >
 
 
 				<div class="card border-success mb-3">
@@ -24,7 +24,7 @@
 								style="text-align: center;">
 								<thead>
 									<tr>
-										<th>ID venta</th>
+									
 										<th>Fecha de venta</th>
 										<th>Total</th>
 										<th>Descripción Rapida</th>
@@ -33,21 +33,23 @@
 									</tr>
 								</thead>
 								<tbody>
+								
 									<tr th:each="venta : ${ventas}">
-										<td th:text="${venta.id}"></td>
+									
 										<td th:text="${venta.fecha}"></td>
 										<td th:text="${venta.total}"></td>
 
 										<td><button class="btn btn-info" th:text="'Informacion'"
-												type="button" th:href="@{/show-info/} + ${venta.id}"
-												id="informacion"></button></td>
+												type="button" 
+												th:id="informacion_+ ${venta.id}" th:onclick="|getVentas('${venta.id}')|" ></button></td>
 										<td><button class="btn btn-success" th:text="'Editar'"
 												type="button"></button></td>
-										<td><button class="btn btn-danger" th:text="'Eliminar'"
-												type="button"></button></td>
+										<td><a class="btn btn-danger" th:text="'Eliminar'"
+												type="button" th:href="@{/eliminar/}+ ${venta.id}" onclick="return confirm('¿Estas seguro que deseas eliminar la venta?');"></a></td>
 
 
 									</tr>
+									
 								</tbody>
 							</table>
 						</div>
@@ -55,7 +57,7 @@
 				</div>
 			</div>
 
-			<div class="col-6">
+			<div class="col-7">
 				<form  th:action="@{/form}" th:object="${venta}" method="post">
 					<div class="form-row">
 						<div class="col-md-6 mb-2">
@@ -119,7 +121,7 @@
 					</div>
 					<div class="form-row">
 						<div class="col-md-6 mb-2 mt-4">
-							<button type="submit" class="btn btn-success">Registrar
+							<button type="submit" class="btn btn-success" id="registrar"  disabled="true">Registrar
 								Venta</button>
 						</div>
 						<div class="col-md-2  mt-4"></div>
@@ -135,31 +137,62 @@
 	<script th:replace="layout/layout :: javascript"></script>
 	<script th:replace="autocomplete :: autocomplete"></script>
 	<script type="text/javascript">
-		$(document).ready(function() {
+	
+	$(document).ready(function(){
+		
 
-			$("#informacion").click(function() {
-				$.ajax({
-					type: "GET",
-					url : $(this).attr("href"),
+			 
+			
+			 
+			
+		
+	
+	});
+	
 
-					dataType : "json",
-					success : function(data) {
+	function getVentas(id){	
+			$.ajax({
+				type: "GET",
+				url : "/show-info/" + id,
 
-						//now you can access properties using dot notation
-						if (data.length > 0) {
+				dataType : "json",
+				success : function(data) {
 
-							var r = data.map(function(e) {
-								return e.producto.nombre;
-							}).join("\n");
-							alert(r);
+					//now you can access properties using dot notation
+					if (data.length > 0) {
 
-						}
+						var r = data.map(function(e) {
+							return e.producto.nombre;
+						}).join("\n");
+						alert(r);
 
-					},
-				});
+					}
+					
 
+				},
 			});
-		});
+
+	
+		}
+
+
+			
+			/*
+			var ventasHelper = {
+					
+					getProductos: function(id){
+						$("#informacion_" +id).
+					}
+					
+			}
+			var linea = $("#plantillaVenta").html();
+			
+			linea = linea.replace(/{ID}/g,ui.item.value);
+			linea = linea.replace(/{NOMBRE}/g,ui.item.label);
+			linea = linea.replace(/{PRECIO}/g,ui.item.precio.toFixed(2));
+			linea = linea.replace(/{LOTE}/g,lote);
+			*/
+	
 	</script>
 
 </body>
