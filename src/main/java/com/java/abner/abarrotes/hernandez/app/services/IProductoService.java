@@ -16,12 +16,14 @@ public interface IProductoService {
 	
 	public void save(Producto producto);
 	
-	public Producto findOne(String codigo); 
+	public Producto findOne(Long id); 
 	
-	public void  delete (String codigo);
+	public void  delete (Long id);
 	
 	public List<Producto> findByNombre(String term);
 	
-	public void reducirMercancia(String id, Integer cantidad);
+	public void reducirMercancia(Long id, Integer cantidad);
+	
+	public void restaurarMercancia(Long id, Integer cantidad);
 	
 }

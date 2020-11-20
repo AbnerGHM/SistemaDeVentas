@@ -28,7 +28,7 @@
 										<th>Fecha de venta</th>
 										<th>Total</th>
 										<th>Descripción Rapida</th>
-										<th>Editar Venta</th>
+
 										<th>Eliminar Venta</th>
 									</tr>
 								</thead>
@@ -42,8 +42,7 @@
 										<td><button class="btn btn-info" th:text="'Informacion'"
 												type="button" 
 												th:id="informacion_+ ${venta.id}" th:onclick="|getVentas('${venta.id}')|" ></button></td>
-										<td><button class="btn btn-success" th:text="'Editar'"
-												type="button"></button></td>
+					
 										<td><a class="btn btn-danger" th:text="'Eliminar'"
 												type="button" th:href="@{/eliminar/}+ ${venta.id}" onclick="return confirm('¿Estas seguro que deseas eliminar la venta?');"></a></td>
 

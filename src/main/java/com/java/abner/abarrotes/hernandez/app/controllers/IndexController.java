@@ -39,7 +39,7 @@ public class IndexController {
 		return "index";
 
 	}
-	
+
 //	@RequestMapping("/gestion/add")
 //	public String pageEliminar(Model model ) {
 //		
@@ -54,7 +54,7 @@ public class IndexController {
 	}
 
 	@RequestMapping(value = "/cargar-lotes/{term}", produces = { "application/json" })
-	public @ResponseBody List<Lote> cargarLotes(@RequestParam String term) {
+	public @ResponseBody List<Lote> cargarLotes(@RequestParam Long term) {
 
 		return loteDao.findByNoLoteLikeCodigo(term);
 	}
@@ -63,39 +63,51 @@ public class IndexController {
 	public @ResponseBody List<ItemVenta> mostrarInfo(@PathVariable(value = "id") Long id) {
 
 		return itemsVenta.findItemsByIdVenta(id);
-		
+
 	}
 
 	@PostMapping("/form")
-   public String guardarVenta(Venta venta, @RequestParam(name="cantidad[]") Integer[] cantidad, @RequestParam(name="item_id[]") String[] itemId 
-		   ) {
-		
-		for (int i = 0; i <itemId.length ; i++) {
-			Producto producto  = productoService.findOne(itemId[i]);
+	public String guardarVenta(Venta venta, @RequestParam(name = "cantidad[]") Integer[] cantidad,
+			@RequestParam(name = "item_id[]") Long[] itemId) {
+
+		for (int i = 0; i < itemId.length; i++) {
+			Producto producto = productoService.findOne(itemId[i]);
 			ItemVenta itemVenta = new ItemVenta();
 			itemVenta.setCantidad(cantidad[i]);
 			itemVenta.setProducto(producto);
 			itemVenta.setTotal(producto.getPrecio() * cantidad[i]);
 			venta.addItemVenta(itemVenta);
-			
+
 			productoService.reducirMercancia(itemId[i], cantidad[i]);
-				
+
 		}
+
+		venta.setTotal(venta.getItemVenta().stream().map(ItemVenta::getTotal).reduce((float) 0,
+				(subtotal, element) -> subtotal + element));
+
+		ventaService.save(venta);
+
+		return "redirect:index";
+	}
+
+
+
+	@RequestMapping(value = "/eliminar/{id}")
+	public String eliminarVenta(@PathVariable(value = "id") Long id) {
+
 		
-	
-		venta.setTotal(venta.getItemVenta().stream().map(ItemVenta::getTotal).reduce((float) 0, (subtotal, element) -> subtotal + element));
 		
-	ventaService.save(venta);
-	   
-		
-	   return "redirect:index";
-   }
-	
-	@RequestMapping(value="/eliminar/{id}")
-	public String eliminarVenta(@PathVariable(value = "id") Long id ) {
+		Venta venta = ventaService.findOne(id);
+
+		for (ItemVenta item : venta.getItemVenta()) {
+
+			Producto producto = productoService.findOne(item.getProducto().getId());
+
+			productoService.restaurarMercancia(producto.getId(), item.getCantidad());
+		}
 		
 		ventaService.delete(id);
 		return "redirect:/index";
-		
+
 	}
- }
+}

@@ -40,14 +40,14 @@ public class ProductoServiceImpl  implements IProductoService{
 	}
 
 	@Override
-	public Producto findOne(String codigo) {
+	public Producto findOne(Long id) {
 		// TODO Auto-generated method stub
-		return productoDao.findById(codigo).get();
+		return productoDao.findById(id).get();
 	}
 
 	@Override
-	public void delete(String codigo) {
-		productoDao.delete( findOne(codigo) );
+	public void delete(Long id) {
+		productoDao.delete( findOne(id) );
 		
 	}
 
@@ -58,11 +58,17 @@ public class ProductoServiceImpl  implements IProductoService{
 	}
 
 	@Override
-	public void reducirMercancia(String id, Integer cantidad) {
+	public void reducirMercancia(Long id, Integer cantidad) {
 		Producto producto = productoDao.findById(id).get();
 		producto.setCantidad(producto.getCantidad()-cantidad);
 		
 		
+	}
+
+	@Override
+	public void restaurarMercancia(Long id, Integer cantidad) {
+		Producto producto = productoDao.findById(id).get();
+		producto.setCantidad(producto.getCantidad()+cantidad);
 	}
 	
 	

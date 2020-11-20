@@ -19,7 +19,7 @@
 						success : function(data) {
 							response($.map(data, function(item) {
 								return {
-									value : item.codigo,
+									value : item.id,
 									label : item.nombre,
 									precio : item.precio,
 
@@ -93,6 +93,8 @@
 					this.calcularTotal();
 				},
 		       eliminarItem : function(id){
+		    	   
+		    	   
 		    	   $("#row_"+id).remove();
 		    	   this.calcularTotal();
 		   		if($("tr[id^='row_']").length==1){

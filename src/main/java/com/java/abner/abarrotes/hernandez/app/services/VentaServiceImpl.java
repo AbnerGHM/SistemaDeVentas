@@ -44,7 +44,7 @@ public class VentaServiceImpl implements IVentaService {
 	@Transactional(readOnly = true)
 	public Venta findOne(Long id) {
 		// TODO Auto-generated method stub
-		return null;
+		return ventaDao.findById(id).get();
 	}
 
 	@Override

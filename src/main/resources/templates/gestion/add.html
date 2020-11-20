@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container mt-5" style="padding-top: 30px;">
+
+<table class="table table-responsive table-sm table-hover  text-nowrap"
+								style="text-align: center;">
+<thead>
+<tr>
+<th> Nombre</th>
+<th> Precio</th>
+<th> Cantidad</th>
+
+</tr>
+</thead>
+<tbody>
+
+<tr th:each="producto : ${productos}">
+<td th:text="${producto.nombre}"></td>
+<td th:text="${producto.precio}"></td>
+<td th:text="${producto.cantidad}"></td>
+
+</tr>
+
+</tbody>
+</table>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="autocomplete-gestion :: autocomplete-gestion"></script>
+</body>
+</html>

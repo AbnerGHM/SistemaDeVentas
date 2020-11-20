@@ -3,6 +3,8 @@ package com.java.abner.abarrotes.hernandez.app.domain.models;
 import java.io.Serializable;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
@@ -20,7 +22,8 @@ public class Producto implements Serializable {
 
 	@Id
 	@Column(nullable = false)
-	private String codigo;
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
 
 	
 	private String nombre;
@@ -33,19 +36,19 @@ public class Producto implements Serializable {
 	public Producto() {
 	}
 
-	public Producto(String codigo, String nombre, Float precio , Integer cantidad) {
+	public Producto(Long id, String nombre, Float precio , Integer cantidad) {
 
-		this.codigo = codigo;
+		this.id = id;
 		this.nombre = nombre;
 		this.precio = precio;
 	}
 
-	public String getCodigo() {
-		return codigo;
+	public Long getId() {
+		return id;
 	}
 
-	public void setCodigo(String codigo) {
-		this.codigo = codigo;
+	public void setId(Long id) {
+		this.id = id;
 	}
 	
 	
