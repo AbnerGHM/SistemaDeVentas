@@ -138,10 +138,12 @@
 	<script type="text/javascript">
 	
 
-	function getVentas(id){	
+	function getVentas(id){
+		
+		var urlAjaxInfo = $("#urlAjaxInfo").val();
 			$.ajax({
 				type: "GET",
-				url : "/show-info/" + id,
+				url : urlAjaxInfo + id,
 
 				dataType : "json",
 				success : function(data) {

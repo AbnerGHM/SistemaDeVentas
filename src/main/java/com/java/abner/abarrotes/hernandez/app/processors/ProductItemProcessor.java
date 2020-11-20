@@ -9,9 +9,9 @@ public class ProductItemProcessor implements ItemProcessor<Producto, Producto> {
 	private static final Logger log = LoggerFactory.getLogger(ProductItemProcessor.class);
 	@Override
 	public Producto process(Producto item) throws Exception {
+
 		
-		
-		return null;
+		return item;
 	}
 
 }

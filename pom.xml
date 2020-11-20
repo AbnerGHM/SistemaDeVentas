@@ -15,7 +15,7 @@
 	<description>Sistema de control para pequeña tienda de abarrotes</description>
 
 	<properties>
-		<java.version>15</java.version>
+		<java.version>14</java.version>
 	</properties>
 
 	<dependencies>
