@@ -40,12 +40,12 @@ public class IndexController {
 
 	}
 	
-	@RequestMapping("/gestion/add")
-	public String pageEliminar(Model model ) {
-		
-		
-		return "/gestion/add";
-	}
+//	@RequestMapping("/gestion/add")
+//	public String pageEliminar(Model model ) {
+//		
+//		
+//		return "/gestion/add";
+//	}
 
 	@RequestMapping(value = "/cargar-productos/{term}", produces = { "application/json" })
 	public @ResponseBody List<Producto> cargarProductos(@RequestParam String term) {
