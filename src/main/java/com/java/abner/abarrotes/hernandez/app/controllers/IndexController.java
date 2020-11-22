@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.java.abner.abarrotes.hernandez.app.dao.IItemVenta;
+import com.java.abner.abarrotes.hernandez.app.dao.IItemVentaDao;
 import com.java.abner.abarrotes.hernandez.app.dao.ILoteDao;
 import com.java.abner.abarrotes.hernandez.app.domain.models.ItemVenta;
 import com.java.abner.abarrotes.hernandez.app.domain.models.Lote;
@@ -31,7 +31,7 @@ public class IndexController {
 	ILoteDao loteDao;
 
 	@Autowired
-	IItemVenta itemsVenta;
+	IItemVentaDao itemsVenta;
 
 	@RequestMapping({ "", "/", "index" })
 	public String index(Model model) {

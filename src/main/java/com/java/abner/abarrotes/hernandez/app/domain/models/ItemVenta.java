@@ -35,7 +35,7 @@ public class ItemVenta implements Serializable {
 
 	public ItemVenta() {
 		
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	@ManyToOne

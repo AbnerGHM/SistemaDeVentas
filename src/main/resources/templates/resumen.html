@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head">
+</head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+
+
+	<div class="container mt-5" style="padding-top: 30px;">
+		<h1>Resumen de ventas</h1>
+		<h4>Ingresa la fecha inicial y final de tu consulta (
+			Predeterminado: hoy).</h4>
+
+		<form th:action="@{/form-resumen}" th:object="${ventas}" th:method="get">
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="inicio">Fecha
+					inicial</span>
+			</div>
+			<input type="date" class="form-control"
+				placeholder="Fecha inicial de consulta" aria-label="Username"
+				aria-describedby="basic-addon1" name="inicio" required="required">
+		</div>
+		<div class="input-group mb-3">
+			<div class="input-group-prepend">
+				<span class="input-group-text" id="fin">Fecha final</span>
+			</div>
+			<input type="date" class="form-control"
+				placeholder="Fecha final de consulta" aria-label="Username"
+				aria-describedby="basic-addon1" name="fin" required="required">
+		</div>
+		<div class="form-row">
+			<div class="col-md-6 mb-2 mt-4">
+				<button type="submit" class="btn btn-success" id="registrar"
+					>Consultar</button>
+			</div>
+
+		</div>
+</form>
+
+
+		<table
+			class="table table-responsive table-sm table-hover  text-nowrap"
+			style="text-align: center;">
+			<thead>
+				<tr>
+					<th>Nombre</th>
+					<th>Cantidad</th>
+
+				</tr>
+			</thead>
+			<tbody>
+
+				<tr th:each="venta : ${ventas}">
+					<td th:text="${venta.nombreProducto}"></td>
+					<td th:text="${venta.suma}"></td>
+
+
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="autocomplete-gestion :: autocomplete-gestion"></script>
+</body>
+</html>
