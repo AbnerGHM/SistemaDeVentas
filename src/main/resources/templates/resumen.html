@@ -7,36 +7,66 @@
 
 
 	<div class="container mt-5" style="padding-top: 30px;">
-		<h1>Resumen de ventas</h1>
-		<h4>Ingresa la fecha inicial y final de tu consulta (
-			Predeterminado: hoy).</h4>
+		<h1 class="mb-4">Resumen de ventas</h1>
+		<h5>Ingresa la fecha inicial y final del periodo que deseas
+			consultar.</h5>
+		<h5 class="mb-4">(Resumen predeterminado de ventas: hoy)</h5>
 
-		<form th:action="@{/form-resumen}" th:object="${ventas}" th:method="get">
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="inicio">Fecha
-					inicial</span>
+		<form th:action="@{/form-resumen}" th:object="${ventas}"
+			th:method="get">
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="inicio">Fecha inicial</span>
+						</div>
+						<input type="date" class="form-control"
+							placeholder="Fecha inicial de consulta" aria-label="Username"
+							aria-describedby="basic-addon1" name="inicio" required="required">
+					</div>
+				</div>
 			</div>
-			<input type="date" class="form-control"
-				placeholder="Fecha inicial de consulta" aria-label="Username"
-				aria-describedby="basic-addon1" name="inicio" required="required">
-		</div>
-		<div class="input-group mb-3">
-			<div class="input-group-prepend">
-				<span class="input-group-text" id="fin">Fecha final</span>
-			</div>
-			<input type="date" class="form-control"
-				placeholder="Fecha final de consulta" aria-label="Username"
-				aria-describedby="basic-addon1" name="fin" required="required">
-		</div>
-		<div class="form-row">
-			<div class="col-md-6 mb-2 mt-4">
-				<button type="submit" class="btn btn-success" id="registrar"
-					>Consultar</button>
+			<div class="form-row">
+				<div class="form-group col-md-4">
+					<div class="input-group mb-3">
+						<div class="input-group-prepend">
+							<span class="input-group-text" id="fin">Fecha final</span>
+						</div>
+						<input type="date" class="form-control"
+							placeholder="Fecha final de consulta" aria-label="Username"
+							aria-describedby="basic-addon1" name="fin" required="required">
+					</div>
+				</div>
 			</div>
 
-		</div>
-</form>
+			<div class="form-row">
+				<div class="col-md-2 mb-2 mt-4">
+					<button type="submit" class="btn btn-success mb-3 " id="registrar">Consultar</button>
+				</div>
+				<div class="col-md-6 mb-2 ">
+					<table class="text-nowrap mt-3 text-center">
+						<tbody>
+							<tr>
+								<td th:if="${textoConsulta} != null " th:text="${textoConsulta}" style="padding-right: 30px; margin-bottom: 0px;"></td>
+
+
+								<td>
+									<h3 id="total" th:text="${total}" style="margin-bottom: 0px;">0</h3>
+								</td>
+
+
+								<td>
+									<h3 style="margin-bottom: 0px;">MXN</h3>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+
+
+
+			</div>
+		</form>
 
 
 		<table
@@ -46,6 +76,9 @@
 				<tr>
 					<th>Nombre</th>
 					<th>Cantidad</th>
+					<th>Precio de Compra</th>
+					<th>Precio de Venta</th>
+					<th>Ganancia Parcial</th>
 
 				</tr>
 			</thead>
@@ -54,6 +87,10 @@
 				<tr th:each="venta : ${ventas}">
 					<td th:text="${venta.nombreProducto}"></td>
 					<td th:text="${venta.suma}"></td>
+					<td th:text="${venta.precioU}"></td>
+					<td th:text="${venta.precio}"></td>
+					<td th:text="${venta.subtotal}"></td>
+
 
 
 				</tr>
@@ -63,5 +100,10 @@
 	</div>
 	<footer th:replace="layout/layout :: footer"></footer>
 	<script th:replace="autocomplete-gestion :: autocomplete-gestion"></script>
+	<script type="text/javascript">
+		$(document).ready(function() {
+
+		});
+	</script>
 </body>
 </html>

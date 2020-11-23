@@ -5,11 +5,14 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.java.abner.abarrotes.hernandez.app.dao.IItemVentaDao;
 import com.java.abner.abarrotes.hernandez.app.dao.ILoteDao;
@@ -35,7 +38,7 @@ public class IndexController {
 
 	@RequestMapping({ "", "/", "index" })
 	public String index(Model model) {
-		model.addAttribute("ventas", ventaService.findAll());
+		model.addAttribute("ventas", ventaService.findLast5());
 		return "index";
 
 	}
@@ -67,8 +70,10 @@ public class IndexController {
 	}
 
 	@PostMapping("/form")
-	public String guardarVenta(Venta venta, @RequestParam(name = "cantidad[]") Integer[] cantidad,
-			@RequestParam(name = "item_id[]") Long[] itemId) {
+	public String guardarVenta(  Venta venta, @RequestParam(name = "cantidad[]") Integer[] cantidad,
+			@RequestParam(name = "item_id[]") Long[] itemId ,RedirectAttributes flash) {
+		
+
 
 		for (int i = 0; i < itemId.length; i++) {
 			Producto producto = productoService.findOne(itemId[i]);
@@ -86,8 +91,12 @@ public class IndexController {
 				(subtotal, element) -> subtotal + element));
 
 		ventaService.save(venta);
+		
+		flash.addFlashAttribute("success", "¡Venta registrada exitosamente!");
 
-		return "redirect:index";
+
+	    return "redirect:/index";
+		
 	}
 
 

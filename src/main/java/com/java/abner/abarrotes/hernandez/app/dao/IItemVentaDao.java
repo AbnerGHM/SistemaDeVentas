@@ -15,7 +15,7 @@ public interface IItemVentaDao extends PagingAndSortingRepository<ItemVenta, Lon
 	  List<ItemVenta> findItemsByIdVenta(Long id);
 	
 	@Query(value="SELECT new com.java.abner.abarrotes.hernandez.app.domain.models.Resume"
-			+ "(p.nombre, SUM( a.cantidad ))  FROM  ItemVenta a  JOIN Producto p ON a.producto.id = p.id JOIN Venta v ON v.id = a.venta.id AND v.fecha BETWEEN ?1 AND ?2  GROUP BY a.producto.id")
+			+ "(p.nombre, SUM( a.cantidad ), p.precioU, p.precio,SUM( a.cantidad )*(p.precio-p.precioU))  FROM  ItemVenta a  JOIN Producto p ON a.producto.id = p.id JOIN Venta v ON v.id = a.venta.id AND v.fecha BETWEEN ?1 AND ?2  GROUP BY a.producto.id")
 	List<Resume> resumirVentas(Date inicio , Date fin);
 
 }

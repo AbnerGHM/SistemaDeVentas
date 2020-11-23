@@ -6,15 +6,15 @@
 
 
 
-	<header th:replace="layout/layout :: header"></header>
+	<header th:replace="layout/layout :: header" ></header>
 
-	<div class="container-fluid mt-5" style="padding-top: 30px;">
+	<div class="container-fluid mt-5" style="padding-top: 80px;">
 		<div class="row">
-			<div class="col-5" >
+			<div class="col-5">
 
 
 				<div class="card border-success mb-3">
-					<div class="card-header">Ventas</div>
+					<div class="card-header">Ultimas Ventas</div>
 					<div class="card-body text-success">
 						<div class="table-condensed table-responsive">
 
@@ -24,7 +24,7 @@
 								style="text-align: center;">
 								<thead>
 									<tr>
-									
+
 										<th>Fecha de venta</th>
 										<th>Total</th>
 										<th>Descripción Rapida</th>
@@ -33,22 +33,23 @@
 									</tr>
 								</thead>
 								<tbody>
-								
+
 									<tr th:each="venta : ${ventas}">
-									
+
 										<td th:text="${venta.fecha}"></td>
 										<td th:text="${venta.total}"></td>
 
 										<td><button class="btn btn-info" th:text="'Informacion'"
-												type="button" 
-												th:id="informacion_+ ${venta.id}" th:onclick="|getVentas('${venta.id}')|" ></button></td>
-					
+												type="button" th:id="informacion_+ ${venta.id}"
+												th:onclick="|getVentas('${venta.id}')|"></button></td>
+
 										<td><a class="btn btn-danger" th:text="'Eliminar'"
-												type="button" th:href="@{/eliminar/}+ ${venta.id}" onclick="return confirm('¿Estas seguro que deseas eliminar la venta?');"></a></td>
+											type="button" th:href="@{/eliminar/}+ ${venta.id}"
+											onclick="return confirm('¿Estas seguro que deseas eliminar la venta?');"></a></td>
 
 
 									</tr>
-									
+
 								</tbody>
 							</table>
 						</div>
@@ -57,7 +58,7 @@
 			</div>
 
 			<div class="col-7">
-				<form  th:action="@{/form}" th:object="${venta}" method="post">
+				<form th:action="@{/form}" th:object="${venta}" method="post">
 					<div class="form-row">
 						<div class="col-md-6 mb-2">
 							<label for="producto">Producto</label> <input type="text"
@@ -78,7 +79,7 @@
 										Disponibles</label>
 								</div>
 								<select class="custom-select" id="Lotes">
-									<option selected>Selecionar...</option>
+									<option selected disabled="disabled">Función no disponible</option>
 
 								</select>
 							</div>
@@ -107,7 +108,7 @@
 										<th width="30%">Nombre</th>
 										<th width="15%">Precio</th>
 										<th width="10%">Cantidad</th>
-									<!-- 	<th width="10%">Descuento</th> -->
+										<!-- 	<th width="10%">Descuento</th> -->
 										<th width="10%">Subtotal</th>
 										<th width="10%">Eliminar</th>
 									</tr>
@@ -119,11 +120,11 @@
 						</div>
 					</div>
 					<div class="form-row">
-						<div class="col-md-6 mb-2 mt-4">
-							<button type="submit" class="btn btn-success" id="registrar" disabled="disabled">Registrar
-								Venta</button>
+						<div class="col-md-4 mb-2 mt-4">
+							<button type="submit" class="btn btn-success" id="registrar"
+								disabled="disabled">Registrar Venta</button>
 						</div>
-						<div class="col-md-2  mt-4"></div>
+
 
 					</div>
 				</form>
@@ -136,13 +137,11 @@
 	<script th:replace="layout/layout :: javascript"></script>
 	<script th:replace="autocomplete :: autocomplete"></script>
 	<script type="text/javascript">
-	
+		function getVentas(id) {
 
-	function getVentas(id){
-		
-		var urlAjaxInfo = $("#urlAjaxInfo").val();
+			var urlAjaxInfo = $("#urlAjaxInfo").val();
 			$.ajax({
-				type: "GET",
+				type : "GET",
 				url : urlAjaxInfo + id,
 
 				dataType : "json",
@@ -152,20 +151,16 @@
 					if (data.length > 0) {
 
 						var r = data.map(function(e) {
-							return e.producto.nombre;
+							return e.producto.nombre + "       " + e.cantidad;
 						}).join("\n");
 						alert(r);
 
 					}
-					
 
 				},
 			});
 
-	
 		}
-
-	
 	</script>
 
 </body>

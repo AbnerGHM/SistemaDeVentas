@@ -22,5 +22,7 @@ public List<Venta> findAll();
 	public void  delete (Long id);
 	
 //	public List<ItemVenta> itemsVenta(Long id);
+
+	public List<Venta> findLast5();
 	
 }

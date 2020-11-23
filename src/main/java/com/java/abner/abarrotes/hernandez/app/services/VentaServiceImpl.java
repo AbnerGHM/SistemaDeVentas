@@ -55,6 +55,14 @@ public class VentaServiceImpl implements IVentaService {
 		
 	}
 
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Venta> findLast5() {
+		// TODO Auto-generated method stub
+		return (List<Venta>) ventaDao.findTop5ByOrderByIdDesc();
+	}
+
 //	@Override
 //	public List<ItemVenta> itemsVenta(Long id) {
 //		// TODO Auto-generated method stub

@@ -32,6 +32,9 @@ public class Producto implements Serializable {
 	private Float precio;
 	
 	private Integer cantidad;
+	 
+   @Column(columnDefinition = "Decimal(10,2)")
+   private Float precioU;
 
 	public Producto() {
 	}
@@ -78,6 +81,14 @@ public class Producto implements Serializable {
 
 	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
+	}
+
+	public Float getPrecioU() {
+		return precioU;
+	}
+
+	public void setPrecioU(Float precioU) {
+		this.precioU = precioU;
 	}
 
 	
