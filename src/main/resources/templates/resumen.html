@@ -74,11 +74,12 @@
 			style="text-align: center;">
 			<thead>
 				<tr>
-					<th>Nombre</th>
-					<th>Cantidad</th>
-					<th>Precio de Compra</th>
-					<th>Precio de Venta</th>
-					<th>Ganancia Parcial</th>
+					<th scope="col">Nombre</th>
+					<th scope="col">Cantidad</th>
+					<th scope="col">Precio de Compra</th>
+					<th scope="col">Precio de Venta</th>
+					<th scope="col">Ganancia Parcial</th>
+					<th scope="col">Cantidad Disponible </th>
 
 				</tr>
 			</thead>
@@ -90,6 +91,7 @@
 					<td th:text="${venta.precioU}"></td>
 					<td th:text="${venta.precio}"></td>
 					<td th:text="${venta.subtotal}"></td>
+					<td th:text="${venta.cantidad}"></td>
 
 
 

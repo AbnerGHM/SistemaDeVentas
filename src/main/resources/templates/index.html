@@ -10,7 +10,7 @@
 
 	<div class="container-fluid mt-5" style="padding-top: 80px;">
 		<div class="row">
-			<div class="col-5">
+			<div class="col-md-5">
 
 
 				<div class="card border-success mb-3">
@@ -25,11 +25,11 @@
 								<thead>
 									<tr>
 
-										<th>Fecha de venta</th>
-										<th>Total</th>
-										<th>Descripción Rapida</th>
+										<th scope="col">Fecha de venta</th>
+										<th scope="col">Total</th>
+										<th scope="col">Descripción Rapida</th>
 
-										<th>Eliminar Venta</th>
+										<th scope="col">Eliminar Venta</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -57,10 +57,10 @@
 				</div>
 			</div>
 
-			<div class="col-7">
+			<div class="col-md-7">
 				<form th:action="@{/form}" th:object="${venta}" method="post">
 					<div class="form-row">
-						<div class="col-md-6 mb-2">
+						<div class="col-md-4 mb-2">
 							<label for="producto">Producto</label> <input type="text"
 								class="form-control" id="producto" name="producto"
 								placeholder="Nombre del Producto" onfocus="this.value=''">
@@ -73,11 +73,11 @@
 
 					<div class="form-row">
 						<div class="col-md-6 mb-2">
-							<div class="input-group mb-3">
+							<div class="input-group mb-3" hidden="true">
 								<div class="input-group-prepend">
 									<label class="input-group-text" for="inputGroupSelect01">Lotes
 										Disponibles</label>
-								</div>
+								</div >
 								<select class="custom-select" id="Lotes">
 									<option selected disabled="disabled">Función no disponible</option>
 
@@ -101,7 +101,7 @@
 					<div class="form-row">
 						<div class="col-md-12">
 							<table
-								class="table table-responsive table-sm table-hover  text-nowrap"
+								class="table table-responsive table-sm table-hover  text-nowrap mt-3	"
 								id="cargarItemsVentas" style="text-align: center;">
 								<thead>
 									<tr>

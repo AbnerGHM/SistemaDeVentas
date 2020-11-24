@@ -15,18 +15,20 @@ public class Resume {
 	private Float precio;
 	@Column(columnDefinition = "Decimal(10,2)")
 	private Float subtotal;
+	private Integer cantidad;
 
 	public Resume() {
 
 	}
 
-	public Resume(String nombreProducto, Long suma, Float precioU, Float precio, Float subtotal) {
+	public Resume(String nombreProducto, Long suma, Float precioU, Float precio, Float subtotal,Integer cantidad) {
 		
 		this.nombreProducto = nombreProducto;
 		this.suma = suma;
 		this.precioU = precioU;
 		this.precio = precio;
 		this.subtotal = subtotal;
+		this.setCantidad(cantidad);
 	}
 
 	public String getNombreProducto() {
@@ -67,6 +69,14 @@ public class Resume {
 
 	public void setSubtotal(Float subtotal) {
 		this.subtotal = subtotal;
+	}
+
+	public Integer getCantidad() {
+		return cantidad;
+	}
+
+	public void setCantidad(Integer cantidad) {
+		this.cantidad = cantidad;
 	}
 
 
