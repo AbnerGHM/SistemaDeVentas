@@ -48,13 +48,14 @@ public class ItemVenta implements Serializable {
 	@ManyToOne(fetch = FetchType.LAZY)
 	private Venta venta;
 
-	private int cantidad;
+	private Integer cantidad;
 
 	@Column(nullable = true)
-	private float descuento;
-
+	private Float descuento;
 	@Column(columnDefinition = "Decimal(10,2)")
-	private float total;
+	private Float ganancia;
+	@Column(columnDefinition = "Decimal(10,2)")
+	private Float  total;
 
 	public Long getId() {
 		return id;
@@ -64,11 +65,11 @@ public class ItemVenta implements Serializable {
 		this.id = id;
 	}
 
-	public int getCantidad() {
+	public Integer getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(int cantidad) {
+	public void setCantidad(Integer cantidad) {
 		this.cantidad = cantidad;
 	}
 
@@ -76,15 +77,15 @@ public class ItemVenta implements Serializable {
 		return descuento;
 	}
 
-	public void setDescuento(float descuento) {
+	public void setDescuento(Float descuento) {
 		this.descuento = descuento;
 	}
 
-	public float getTotal() {
+	public Float getTotal() {
 		return total;
 	}
 
-	public void setTotal(float total) {
+	public void setTotal(Float total) {
 		this.total = total;
 	}
 
@@ -114,6 +115,14 @@ public class ItemVenta implements Serializable {
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public Float getGanancia() {
+		return ganancia;
+	}
+
+	public void setGanancia(Float ganancia) {
+		this.ganancia = ganancia;
 	}
 
 }

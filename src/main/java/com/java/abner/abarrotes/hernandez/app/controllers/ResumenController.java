@@ -34,9 +34,9 @@ public class ResumenController {
 		Date hoy = new Date();
 		model.addAttribute("ventas", itemVentaDao.resumirVentas(hoy ,hoy));
 		
-		Float total = 0f;
+		Double total = 0d;
 		for (Resume item : itemVentaDao.resumirVentas(hoy, hoy)) {
-			total += item.getSubtotal();
+			total += item.getGanancia();
 		}
 		
 	    SimpleDateFormat  formater = new SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new Locale("es_ES"));
@@ -61,9 +61,9 @@ public class ResumenController {
 
 		model.addAttribute("ventas", itemVentaDao.resumirVentas(inicio, fin));
 		
-		Float total = 0f;
+		Double total = 0d;
 		for (Resume item : itemVentaDao.resumirVentas(inicio, fin)) {
-			total += item.getSubtotal();
+			total += item.getGanancia();
 		}
 		
 	    SimpleDateFormat  formater = new SimpleDateFormat("dd 'de' MMMM 'del' yyyy", new Locale("es_ES"));

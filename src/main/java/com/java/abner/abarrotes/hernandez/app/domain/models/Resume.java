@@ -7,77 +7,70 @@ import org.springframework.stereotype.Component;
 @Component
 public class Resume {
 
-	private String nombreProducto;
-	private Long suma;
-	@Column(columnDefinition = "Decimal(10,2)")
-	private Float precioU;
-	@Column(columnDefinition = "Decimal(10,2)")
-	private Float precio;
-	@Column(columnDefinition = "Decimal(10,2)")
-	private Float subtotal;
-	private Integer cantidad;
+private String nombreProducto;
 
-	public Resume() {
+private Long cantidad;
+@Column(columnDefinition = "Decimal(10,2)")
+private Double total;
+@Column(columnDefinition = "Decimal(10,2)")
+private Double ganancia;
 
-	}
+private Integer cantidadDisponible;
 
-	public Resume(String nombreProducto, Long suma, Float precioU, Float precio, Float subtotal,Integer cantidad) {
-		
-		this.nombreProducto = nombreProducto;
-		this.suma = suma;
-		this.precioU = precioU;
-		this.precio = precio;
-		this.subtotal = subtotal;
-		this.setCantidad(cantidad);
-	}
+public Resume() {
+	
+	// TODO Auto-generated constructor stub
+}
 
-	public String getNombreProducto() {
-		return nombreProducto;
-	}
+public Resume(String nombreProducto, Long cantidad, Double total, Double ganancia, Integer cantidadDisponible) {
+	
+	this.nombreProducto = nombreProducto;
+	this.cantidad = cantidad;
+	this.total = total;
+	this.ganancia = ganancia;
+	this.cantidadDisponible = cantidadDisponible;
+	
+}
 
-	public void setNombreProducto(String nombreProducto) {
-		this.nombreProducto = nombreProducto;
-	}
+public String getNombreProducto() {
+	return nombreProducto;
+}
 
-	public Long getSuma() {
-		return suma;
-	}
+public void setNombreProducto(String nombreProducto) {
+	this.nombreProducto = nombreProducto;
+}
 
-	public void setSuma(Long suma) {
-		this.suma = suma;
-	}
+public Long getCantidad() {
+	return cantidad;
+}
 
-	public Float getPrecioU() {
-		return precioU;
-	}
+public void setCantidad(Long cantidad) {
+	this.cantidad = cantidad;
+}
 
-	public void setPrecioU(Float precioU) {
-		this.precioU = precioU;
-	}
+public Double getTotal() {
+	return total;
+}
 
-	public Float getPrecio() {
-		return precio;
-	}
+public void setTotal(Double total) {
+	this.total = total;
+}
 
-	public void setPrecio(Float precio) {
-		this.precio = precio;
-	}
+public Double getGanancia() {
+	return ganancia;
+}
 
-	public Float getSubtotal() {
-		return subtotal;
-	}
+public void setGanancia(Double ganancia) {
+	this.ganancia = ganancia;
+}
 
-	public void setSubtotal(Float subtotal) {
-		this.subtotal = subtotal;
-	}
+public Integer getCantidadDisponible() {
+	return cantidadDisponible;
+}
 
-	public Integer getCantidad() {
-		return cantidad;
-	}
-
-	public void setCantidad(Integer cantidad) {
-		this.cantidad = cantidad;
-	}
+public void setCantidadDisponible(Integer cantidadDisponible) {
+	this.cantidadDisponible = cantidadDisponible;
+}
 
 
 

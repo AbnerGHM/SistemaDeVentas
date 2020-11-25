@@ -72,6 +72,7 @@
 						
 						$("#registrar").attr("disabled",false);
 				     }
+					itemsHelper.checkNan();
 
 					return false;
 				}
@@ -86,13 +87,16 @@
 			});
 		
 			$("#success").fadeOut(5000);
+			$("#error").fadeOut(5000);
 		});
+		
 		
 		var itemsHelper = {
 				
 				calcularImporte : function(id, precio, cantidad){
 					$("#total_importe_" +id).html(parseFloat(precio)*parseFloat(cantidad));
 					this.calcularTotal();
+					this.checkNan();
 				},
 		       eliminarItem : function(id){
 		    	   
@@ -110,9 +114,22 @@
 		    	   $('span[id^="total_importe_"]').each(function(){
 		    		   
 		    		   total +=parseFloat($(this).html());
+		    		   
 		    	   });
 		    	   
+		    	  
 		    	   $("#total").html(total.toFixed(2));
+		    	   
+		    	   this.checkNan();
+		       },
+		       checkNan :function(){
+		    	   if(isNaN($("#total").html())){
+		    		   
+			    		  $("#registrar").attr("disabled",true);
+			    	   
+			    	   }else{
+			    		   $("#registrar").attr("disabled",false);
+			    	   }
 		       }
 				
 		}

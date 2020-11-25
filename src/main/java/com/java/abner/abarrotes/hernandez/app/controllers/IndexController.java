@@ -74,13 +74,18 @@ public class IndexController {
 			@RequestParam(name = "item_id[]") Long[] itemId ,RedirectAttributes flash) {
 		
 
-
 		for (int i = 0; i < itemId.length; i++) {
 			Producto producto = productoService.findOne(itemId[i]);
 			ItemVenta itemVenta = new ItemVenta();
+			if (cantidad[i]<=0) {
+			flash.addFlashAttribute("error", "¡Error, no se ha logrado registrar la venta!");
+			 return "redirect:/index";
+			}
+			
 			itemVenta.setCantidad(cantidad[i]);
 			itemVenta.setProducto(producto);
 			itemVenta.setTotal(producto.getPrecio() * cantidad[i]);
+			itemVenta.setGanancia(cantidad[i]*(producto.getPrecio()-producto.getPrecioU()));
 			venta.addItemVenta(itemVenta);
 
 			productoService.reducirMercancia(itemId[i], cantidad[i]);

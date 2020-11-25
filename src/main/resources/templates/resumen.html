@@ -75,11 +75,13 @@
 			<thead>
 				<tr>
 					<th scope="col">Nombre</th>
-					<th scope="col">Cantidad</th>
-					<th scope="col">Precio de Compra</th>
+					<th scope="col">Cantidad Vendida</th>
+				<!--  	<th scope="col">Precio de Compra</th>
 					<th scope="col">Precio de Venta</th>
-					<th scope="col">Ganancia Parcial</th>
-					<th scope="col">Cantidad Disponible </th>
+					-->
+					<th scope="col">Total de venta</th>
+					<th scope="col">Ganancia </th>
+					<th scope="col">Cantidad disponible </th>
 
 				</tr>
 			</thead>
@@ -87,11 +89,15 @@
 
 				<tr th:each="venta : ${ventas}">
 					<td th:text="${venta.nombreProducto}"></td>
-					<td th:text="${venta.suma}"></td>
-					<td th:text="${venta.precioU}"></td>
+					<td th:text="${venta.cantidad}"></td>
+					<!--  <td th:text="${venta.precioU}"></td>
 					<td th:text="${venta.precio}"></td>
 					<td th:text="${venta.subtotal}"></td>
-					<td th:text="${venta.cantidad}"></td>
+					-->
+					<td th:text="${venta.total}"></td>
+					<td th:text="${venta.ganancia}"></td>
+					<td th:text="${venta.cantidadDisponible}"></td>
+
 
 
 

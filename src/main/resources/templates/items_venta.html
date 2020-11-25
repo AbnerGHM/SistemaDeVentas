@@ -11,12 +11,12 @@
 						name="item_id[]" /></td>
 					<td>{NOMBRE}</td>
 					<td>{PRECIO} <span>MXN</span></td>
-					<td><input type="number" name="cantidad[]" value="1"
+					<td><input type="number" name="cantidad[]" value="1" min="1"
 						id="cantidad_{ID}"
 						style="width: 70%; box-sizing: border-box; padding: .375rem;"
 						class="form-control"
-						onchange="itemsHelper.calcularImporte({ID},{PRECIO},this.value);" 
-						onkeydown="return event.key != 'Enter';"/></td>
+						onchange="itemsHelper.calcularImporte({ID},{PRECIO},this.value); itemsHelper.checkNan();" 
+						onkeydown="return event.key != 'Enter';" /></td>
 				<!--  	<td><input type="number" name="descuento[]" value="0"
 						id="descuento_{ID}"
 						style="width: 70%; box-sizing: border-box; padding: .375rem; display: inline-block;"

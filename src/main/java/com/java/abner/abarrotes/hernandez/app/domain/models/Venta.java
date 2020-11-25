@@ -41,6 +41,7 @@ public class Venta implements Serializable {
 
 	@Temporal(TemporalType.DATE)
 	private Date fecha;
+	
 
 	@JsonManagedReference
 	@JoinColumn(name = "venta_id")
