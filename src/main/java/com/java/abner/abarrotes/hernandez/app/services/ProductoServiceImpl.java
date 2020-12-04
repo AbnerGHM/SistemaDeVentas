@@ -37,6 +37,7 @@ public class ProductoServiceImpl  implements IProductoService{
 	public void save(Producto producto) {
 		productoDao.save(producto);
 		
+		
 	}
 
 	@Override
@@ -69,6 +70,12 @@ public class ProductoServiceImpl  implements IProductoService{
 	public void restaurarMercancia(Long id, Integer cantidad) {
 		Producto producto = productoDao.findById(id).get();
 		producto.setCantidad(producto.getCantidad()+cantidad);
+	}
+
+	@Override
+	public List<Producto> findAllByNombre(String term) {
+		// TODO Auto-generated method stub
+		return productoDao.findAllByNombre(term);
 	}
 	
 	

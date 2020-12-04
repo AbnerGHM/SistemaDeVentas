@@ -50,8 +50,7 @@ public class ItemVenta implements Serializable {
 
 	private Integer cantidad;
 
-	@Column(nullable = true)
-	private Float descuento;
+
 	@Column(columnDefinition = "Decimal(10,2)")
 	private Float ganancia;
 	@Column(columnDefinition = "Decimal(10,2)")
@@ -73,13 +72,7 @@ public class ItemVenta implements Serializable {
 		this.cantidad = cantidad;
 	}
 
-	public float getDescuento() {
-		return descuento;
-	}
 
-	public void setDescuento(Float descuento) {
-		this.descuento = descuento;
-	}
 
 	public Float getTotal() {
 		return total;

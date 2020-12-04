@@ -25,5 +25,7 @@ public interface IProductoService {
 	public void reducirMercancia(Long id, Integer cantidad);
 	
 	public void restaurarMercancia(Long id, Integer cantidad);
+
+	public List<Producto> findAllByNombre(String term);
 	
 }

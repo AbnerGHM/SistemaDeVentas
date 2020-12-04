@@ -6,10 +6,15 @@
 	<header th:replace="layout/layout :: header"></header>
 
 
-	<div class="container mt-5" style="padding-top: 30px;">
-		<h1 class="mb-4">Resumen de ventas</h1>
-		<h5>Ingresa la fecha inicial y final del periodo que deseas
-			consultar.</h5>
+	<div class="container " style="padding-top: 100px;">
+		<h1 class="mb-4 mx-auto" style="width: 500px; padding-bottom: 10px;">Resumen
+			de ventas</h1>
+		<hr style="border: 1px solid;" />
+		<h5>
+			Ingresa la <span style="text-decoration: underline; color: red; font-style: italic;">fecha
+				inicial</span> y <span style="text-decoration: underline; color: red; font-style: italic;"  >fecha
+				final </span> del periodo que deseas consultar.
+		</h5>
 		<h5 class="mb-4">(Resumen predeterminado de ventas: hoy)</h5>
 
 		<form th:action="@{/form-resumen}" th:object="${ventas}"
@@ -47,7 +52,8 @@
 					<table class="text-nowrap mt-3 text-center">
 						<tbody>
 							<tr>
-								<td th:if="${textoConsulta} != null " th:text="${textoConsulta}" style="padding-right: 30px; margin-bottom: 0px;"></td>
+								<td th:if="${textoConsulta} != null " th:text="${textoConsulta}"
+									style="padding-right: 30px; margin-bottom: 0px;"></td>
 
 
 								<td>
@@ -76,12 +82,12 @@
 				<tr>
 					<th scope="col">Nombre</th>
 					<th scope="col">Cantidad Vendida</th>
-				<!--  	<th scope="col">Precio de Compra</th>
+					<!--  	<th scope="col">Precio de Compra</th>
 					<th scope="col">Precio de Venta</th>
 					-->
 					<th scope="col">Total de venta</th>
-					<th scope="col">Ganancia </th>
-					<th scope="col">Cantidad disponible </th>
+					<th scope="col">Ganancia</th>
+					<th scope="col">Cantidad disponible</th>
 
 				</tr>
 			</thead>

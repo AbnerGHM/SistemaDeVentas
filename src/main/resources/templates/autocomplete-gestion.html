@@ -8,21 +8,23 @@
 
 	<script type="text/javascript" th:fragment="autocomplete-gestion">
 		$(document).ready(function() {
-			$("#producto").autocomplete({
+			var urlAjaxFull = $("#urlAjaxFull").val();
+			$("#nombre").autocomplete({
 				source : function(request, response) {
 					$.ajax({
-						url : "/cargar-productos/" + request.term,
-						dataType : "json",
+						url : urlAjaxFull + request.term,
+						dataType : "json",	
 						data : {
 							term : request.term
 						},
 						success : function(data) {
 							response($.map(data, function(item) {
 								return {
-									value : item.codigo,
+									value : item.id,
 									label : item.nombre,
+									cantidad : item.cantidad,
 									precio : item.precio,
-									cantidad: item.cantidad,
+									precioU: item.precioU
 									
 
 								};
@@ -32,8 +34,11 @@
 				},
 				select : function(event, ui) {
 					
-					$("#producto").val(ui.item.label);
-					$("#quantity").val(ui.item.cantidad);
+					$("#id").val(ui.item.value);
+					$("#nombre").val(ui.item.label);
+					$("#cantidad").val(ui.item.cantidad);
+					$("#precio").val(ui.item.precio);
+					$("#precioU").val(ui.item.precioU)
 					return false;
 				}
 
@@ -45,6 +50,10 @@
 			
 			
 		});
+		
+		function create(){
+			$("#id").val("0");
+		}
 		
 
 	</script>

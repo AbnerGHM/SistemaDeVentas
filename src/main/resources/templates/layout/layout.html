@@ -42,17 +42,43 @@
 			</button>
 			<div class="collapse navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" th:href="@{index}">Inicio
-							<span class="sr-only">(current)</span>
-					</a></li>
-			<!--  	<li class="nav-item"><a class="nav-link" href="#">Actualizar Producto</a></li> -->	
+					<li class="nav-item"><a class="nav-link"
+						th:href="@{index}">Inicio </a></li>
 					<li class="nav-item"><a class="nav-link" th:href="@{resumen}">Resumen</a></li>
+					<li class="nav-item"><a class="nav-link" th:href="@{update}">Gestión de Productos</a></li>
 				</ul>
 			</div>
 		</nav>
 
-<div class="alert alert-success fixed-top "th:text="${success}" th:if="${success} != null" style="text-align: center; margin-top: 70px;" id="success" role="alert"></div>
-<div class="alert alert-danger fixed-top "th:text="${error}" th:if="${error} != null" style="text-align: center; margin-top: 70px;" id="error" role="alert"></div>
+		<div class="alert alert-success fixed-top " th:text="${success}"
+			th:if="${success} != null"
+			style="text-align: center; margin-top: 70px;" id="success"
+			role="alert"></div>
+		<div class="alert alert-danger fixed-top " th:text="${error}"
+			th:if="${error} != null"
+			style="text-align: center; margin-top: 70px;" id="error" role="alert"></div>
+		<div class="alert alert-success fixed-top " th:text="${existe}"
+			th:if="${existe} != null"
+			style="text-align: center; margin-top: 70px;" id="existe"
+			role="alert"></div>
+		<div class="alert alert-success fixed-top " th:text="${creado}"
+			th:if="${creado} != null"
+			style="text-align: center; margin-top: 70px;" id="creado"
+			role="alert"></div>
+		<div class="alert alert-warning fixed-top " th:text="${eliminado}"
+			th:if="${eliminado} != null"
+			style="text-align: center; margin-top: 70px;" id="eliminado"
+			role="alert"></div>
+		<div class="alert alert-warning fixed-top "
+			th:text="${ventaEliminada}" th:if="${ventaEliminada} != null"
+			style="text-align: center; margin-top: 70px;" id="ventaEliminada"
+			role="alert"></div>
+		<div class="alert alert-warning fixed-top " th:text="${error}"
+			th:if="${error} != null"
+			style="text-align: center; margin-top: 70px;" id="error" role="alert"></div>
+			<div class="alert alert-danger fixed-top " th:text="${badRegex}"
+			th:if="${badRegex} != null"
+			style="text-align: center; margin-top: 70px;" id="badRegex" role="alert"></div>
 	</header>
 
 	<footer th:fragment="footer">
@@ -60,8 +86,21 @@
 		<script th:src="@{/js/jquery-3.5.1.js}"></script>
 		<script th:src="@{/js/jquery-ui.min.js}"></script>
 		<script th:src="@{/js/bootstrap.bundle.min.js}"></script>
-		<input type="hidden" id="urlAjax" th:value="@{'/cargar-productos/'}" > 
-		<input type="hidden" id="urlAjaxInfo" th:value="@{'/show-info/'}"> 
+		<input type="hidden" id="urlAjax" th:value="@{'/cargar-productos/'}">
+		<input type="hidden" id="urlAjaxFull"
+			th:value="@{'/cargar-full-productos/'}"> <input type="hidden"
+			id="urlAjaxInfo" th:value="@{'/show-info/'}">
+		<script type="text/javascript">
+	
+		 $(function(){
+		        $('a').each(function(){
+		            if ($(this).prop('href') == window.location.href) {
+		                $(this).addClass('active'); $(this).parents('li').addClass('active');
+		            }
+		        });
+		    });
+			
+		</script>
 
 		<!--
 		 	<script th:src="@{/js/jquery-3.5.1.min.map}"></script>

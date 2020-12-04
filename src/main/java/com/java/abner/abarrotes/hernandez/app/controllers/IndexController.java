@@ -107,7 +107,7 @@ public class IndexController {
 
 
 	@RequestMapping(value = "/eliminar/{id}")
-	public String eliminarVenta(@PathVariable(value = "id") Long id) {
+	public String eliminarVenta(@PathVariable(value = "id") Long id, RedirectAttributes flash) {
 
 		
 		
@@ -121,6 +121,7 @@ public class IndexController {
 		}
 		
 		ventaService.delete(id);
+		 flash.addFlashAttribute("ventaEliminada", "¡Se ha eliminado la venta!, INVENTARIO ACTUALIZADO");
 		return "redirect:/index";
 
 	}

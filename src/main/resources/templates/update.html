@@ -4,84 +4,107 @@
 
 </head>
 <body>
-<header th:replace="layout/layout :: header"></header>
-<form class="needs-validation" novalidate>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom01">First name</label>
-      <input type="text" class="form-control" id="validationCustom01" value="Mark" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom02">Last name</label>
-      <input type="text" class="form-control" id="validationCustom02" value="Otto" required>
-      <div class="valid-feedback">
-        Looks good!
-      </div>
-    </div>
-  </div>
-  <div class="form-row">
-    <div class="col-md-6 mb-3">
-      <label for="validationCustom03">City</label>
-      <input type="text" class="form-control" id="validationCustom03" required>
-      <div class="invalid-feedback">
-        Please provide a valid city.
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom04">State</label>
-      <select class="custom-select" id="validationCustom04" required>
-        <option selected disabled value="">Choose...</option>
-        <option>...</option>
-      </select>
-      <div class="invalid-feedback">
-        Please select a valid state.
-      </div>
-    </div>
-    <div class="col-md-3 mb-3">
-      <label for="validationCustom05">Zip</label>
-      <input type="text" class="form-control" id="validationCustom05" required>
-      <div class="invalid-feedback">
-        Please provide a valid zip.
-      </div>
-    </div>
-  </div>
-  <div class="form-group">
-    <div class="form-check">
-      <input class="form-check-input" type="checkbox" value="" id="invalidCheck" required>
-      <label class="form-check-label" for="invalidCheck">
-        Agree to terms and conditions
-      </label>
-      <div class="invalid-feedback">
-        You must agree before submitting.
-      </div>
-    </div>
-  </div>
-  <button class="btn btn-primary" type="submit">Submit form</button>
-</form>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container" style="padding-top: 150px;">
+		<h3>Crea, actualizá o eliminá productos.</h3>
+		<p>
+			Para <b>crear</b>, <b>actualizar</b> ó <b>eliminar</b> un producto,
+			realiza los siguientes pasos: <br> 1.- Ingresa el nombre del
+			producto que deseas modificar ó eliminar. <br> 2.- Ingresa el
+			nombre, cantidad, precio de compra y precio de venta. (No es
+			necesario si solo vas a eliminar el producto)<br> 3.- Da click
+			en el boton Crear, Actualizar ó Eliminar.
+		</p>
 
-<script>
-// Example starter JavaScript for disabling form submissions if there are invalid fields
-(function() {
-  'use strict';
-  window.addEventListener('load', function() {
-    // Fetch all the forms we want to apply custom Bootstrap validation styles to
-    var forms = document.getElementsByClassName('needs-validation');
-    // Loop over them and prevent submission
-    var validation = Array.prototype.filter.call(forms, function(form) {
-      form.addEventListener('submit', function(event) {
-        if (form.checkValidity() === false) {
-          event.preventDefault();
-          event.stopPropagation();
-        }
-        form.classList.add('was-validated');
-      }, false);
-    });
-  }, false);
-})();
-</script>
-<footer th:replace="layout/layout :: footer"></footer>
+		<p>
+			<!--  <span style="color: red">(Al momento de crear, actualizar o
+				eliminar un producto, ningún campo debe estar vacío)</span>
+				-->
+		</p>
+
+		<form class="needs-validation" th:action="@{/crud}"
+			th:object="${producto}" method="post" novalidate>
+
+			<div class="form-row">
+				<div class="col-md-6 mb-3">
+					<label for="nombre">Nombre del producto</label> <input type="text"
+						th:field="*{nombre}" class="form-control" id="nombre"
+						placeholder="Ingresa el nombre del producto" required >
+					<div class="invalid-feedback">Debe especificar un nombre</div>
+				</div>
+				<div class="col-md-2 mb-3">
+					<label for="id">ID</label> <input
+						th:field="*{id}" type="text" class="form-control" id="id"
+						placeholder="id" >
+				</div>
+			</div>
+			<div class="form-row">
+
+				<div class="col-md-2 mb-3" style="text-align: center;">
+					<label for="cantidad">Cantidad Existente</label> <input
+						th:field="*{cantidad}" type="number" class="form-control"
+						id="cantidad" min="1" placeholder="cantidad" required>
+					<div class="invalid-feedback">La cantidad minima debe ser 1</div>
+				</div>
+				<div class="col-md-3 mb-3" style="text-align: center;">
+					<label for="validationCustom03">Precio de Compra</label> <input
+						th:field="*{precioU}" type="number" step="0.01"
+						class="form-control" id="precioU" min="0.01"
+						placeholder="precio de compra" required>
+					<div class="invalid-feedback">el precio no puede ser 0</div>
+				</div>
+				<div class="col-md-3 mb-3" style="text-align: center;">
+					<label for="validationCustom03">Precio de Venta</label> <input
+						th:field="*{precio}" type="number" step="0.01"
+						class="form-control" id="precio" min="0.01"
+						placeholder="precio de venta" required>
+					<div class="invalid-feedback">El precio de venta no puede ser 0</div>
+				</div>
+			</div>
+			<div class="form-row mt-5 justify-content-center">
+				<div class="col-md-4 mb-3" style="text-align: center;">
+					<button class="btn btn-success" type="submit" name="save" id="save"
+						value="save" onclick="create()">Crear producto</button>
+				</div>
+				<div class="col-md-4 mb-3" style="text-align: center;">
+					<button class="btn btn-primary" type="submit" name="save" id="save"
+						value="save">Actualizar</button>
+				</div>
+				<div class="col-md-4 mb-3" style="text-align: center;">
+					<button class="btn btn-danger" type="submit" name="delete" id="delete"
+						value="delete">Eliminar</button>
+				</div>
+			</div>
+
+		</form>
+	</div>
+	<script>
+		// Example starter JavaScript for disabling form submissions if there are invalid fields
+		(function() {
+			'use strict';
+			window.addEventListener('load',
+					function() {
+						// Fetch all the forms we want to apply custom Bootstrap validation styles to
+						var forms = document
+								.getElementsByClassName('needs-validation');
+						// Loop over them and prevent submission
+						var validation = Array.prototype.filter.call(forms,
+								function(form) {
+									form.addEventListener('submit', function(
+											event) {
+										if (form.checkValidity() === false) {
+											event.preventDefault();
+											event.stopPropagation();
+										}
+										form.classList.add('was-validated');
+									}, false);
+								});
+					}, false);
+		})();
+	</script>
+	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:replace="autocomplete :: autocomplete"></script>
+	<script th:replace="autocomplete-gestion :: autocomplete-gestion"></script>
+
 </body>
 </html>

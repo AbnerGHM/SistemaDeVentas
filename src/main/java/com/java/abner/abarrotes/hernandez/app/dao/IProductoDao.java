@@ -8,8 +8,11 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import com.java.abner.abarrotes.hernandez.app.domain.models.Producto;
 public interface IProductoDao extends PagingAndSortingRepository<Producto, Long> {
 
-	@Query("select  p from Producto p where p.nombre like %?1%")
+	@Query("select  p from Producto p where p.nombre LIKE %?1% AND p.onStock = true")
 	public List<Producto> findByNombre(String nombre);
+	
+	@Query("select  p from Producto p where p.nombre LIKE %?1%")
+	public List<Producto> findAllByNombre(String nombre);
 	
 
 }
